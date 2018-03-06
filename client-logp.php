@@ -4,7 +4,8 @@
    
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form 
-      
+      $id=$_SESSION['id'];
+
       $myusername = mysqli_real_escape_string($db,$_POST['cl_email']);
       $mypassword = mysqli_real_escape_string($db,$_POST['pwd']); 
       
