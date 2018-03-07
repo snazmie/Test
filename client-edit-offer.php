@@ -56,6 +56,7 @@ include('client-session.php');
                     <li><a href="blog-item.html">Job Rating</a></li>
                     <li><a href="registration.html">Setting</a></li>
                     <li class="divider"></li>
+                    <li class="divider"></li>
                     
                     <li><a href="client-logout.php">Sign Out</a></li>
                   </ul>
