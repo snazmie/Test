@@ -9,6 +9,11 @@ $query_staff = $conn->query($sql_staf);
 $rowstaff =$query_staff->fetch_assoc();
 ?>
 <?php
+    //get uploaded data for dynamic table
+    $sql = "SELECT * FROM upload WHERE app_ID = '$app_id'";
+    $query = $conn -> query($sql);
+    $row = $query -> fetch_assoc();
+
     if(isset($_POST['nama_dokumen'])) {
         $app_id = $_SESSION["app_ID"];
         $name = $_POST["nama_dokumen"];
@@ -31,7 +36,7 @@ $rowstaff =$query_staff->fetch_assoc();
         // if everything is ok, try to upload file
         } else {
             //insert upload detail into database
-            $sql = "INSERT INTO upload (app_ID, name) VALUES ('$app_id', '$name')";
+            $sql = "INSERT INTO upload (app_ID, name, type, file_ext, upload_date) VALUES ('$app_id', '$name', '$type', '$fileType' '$date')";
             $query = $conn -> query($sql);
 
             //get latest upload ID
@@ -43,6 +48,8 @@ $rowstaff =$query_staff->fetch_assoc();
             $temp = explode(".", $_FILES["muat_naik"]["name"]);
             $newfilename = $rowid["idupload"] . '.' . end($temp);
             move_uploaded_file($_FILES["muat_naik"]["tmp_name"], $target_dir . $newfilename);
+
+            echo "<script>alert('Success message!'); window.location = 'form3.php';</script>";
         }
     }
 ?>
